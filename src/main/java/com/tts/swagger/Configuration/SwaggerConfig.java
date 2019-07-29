@@ -19,14 +19,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 	@Bean
-	public Docket api() {
+	public Docket apiv1() {
 		return new Docket(DocumentationType.SWAGGER_2)
+		.groupName("Version 1")
 				.select()                                  
 		        .apis(RequestHandlerSelectors.any())  
-		        //.apis(RequestHandlerSelectors.basePackage("com.tts.swagger.Models")) 
-		        .paths(PathSelectors.any())                          
+		        //.apis(RequestHandlerSelectors.basePackage("com.tts.swagger.Models.ItemV1")) 
+		        .paths(PathSelectors.ant("/v1/**"))                          
 		        .build()
-				.apiInfo(buildApiInfo());
+				.apiInfo(buildApiInfoV1());
 	}
 	
 	@Bean
@@ -36,7 +37,7 @@ public class SwaggerConfig {
 	        .build();
 	}
 	
-	private ApiInfo buildApiInfo() {
+	private ApiInfo buildApiInfoV1() {
 		return new ApiInfoBuilder()
 				.title("Menu Items API")
 		        .description("REST API for interacting with menu items")
@@ -47,9 +48,27 @@ public class SwaggerConfig {
 		        .build();	
 	}
 	
+
+    @Bean
+    public Docket apiv2() { 
+        return new Docket(DocumentationType.SWAGGER_2)
+        .groupName("Version 2")
+	      .select()                                  
+	      .apis(RequestHandlerSelectors.any()) 
+	      .paths(PathSelectors.ant("/v2/**"))                          
+	      .build()
+	      .apiInfo(buildApiInfoV2());
+    }
+    
+    private ApiInfo buildApiInfoV2() {
+        return new ApiInfoBuilder()
+            .title("Menu Items API")
+            .description("REST API for interacting with menu items")
+            .version("2.0.0")
+            .contact(new Contact("Developer Name", "website.com", "developer@website.com"))
+            .license("Apache License Version 2.0")
+            .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
+            .build();
 	
-	
-	
-	
-	
+    }
 }
