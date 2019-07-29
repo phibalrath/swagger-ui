@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tts.swagger.models.ItemV1;
 import com.tts.swagger.models.ItemV2;
 
 import io.swagger.annotations.Api;
@@ -25,7 +24,7 @@ import io.swagger.annotations.ApiResponses;
 	})
 @RequestMapping("/v2")
 public class ItemsControllerV2 {
-	@ApiOperation(value = "Get all menu items", response = ItemV1.class, 
+	@ApiOperation(value = "Get all menu items", response = ItemV2.class, 
             responseContainer = "List")
 	@GetMapping("/items")
 	public ResponseEntity<List<ItemV2>> getItems() {

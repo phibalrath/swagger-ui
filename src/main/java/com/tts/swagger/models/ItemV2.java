@@ -21,8 +21,9 @@ public class ItemV2 {
 	private Date createdDate;
 	@ApiModelProperty(notes = "The last updated date of the menu item")
 	private Date updatedDate;
-	
+	@ApiModelProperty(notes = "Does item contain Gluten? T/F")
 	private boolean glutenFree;
+	@ApiModelProperty(notes = "true/false if an item is Vegeterian")
 	private boolean vegetarian;
 	
 }
